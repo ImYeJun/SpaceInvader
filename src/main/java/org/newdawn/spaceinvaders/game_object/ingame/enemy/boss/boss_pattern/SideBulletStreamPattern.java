@@ -10,7 +10,7 @@ import org.newdawn.spaceinvaders.loop.Loop;
 public class SideBulletStreamPattern extends BossPattern {
     private boolean isExecuted = false ;
 
-    private static final long shootInterval = FixedPointUtil.ZERO_2 + FixedPointUtil.ZERO_5;
+    private static final long SHOOT_INTERVAL = FixedPointUtil.ZERO_2 + FixedPointUtil.ZERO_5;
     private long shootElapsed = 0;
     private int remainShootCount = 10;
 
@@ -34,10 +34,10 @@ public class SideBulletStreamPattern extends BossPattern {
             destroy();
             return;
         }
-        if (shootElapsed < shootInterval){
+        if (shootElapsed < SHOOT_INTERVAL){
             shootElapsed += deltaTime;
 
-            if (shootElapsed >= shootInterval) { shootElapsed = shootInterval; }
+            if (shootElapsed >= SHOOT_INTERVAL) { shootElapsed = SHOOT_INTERVAL; }
         }
         else{
             shootBullet();

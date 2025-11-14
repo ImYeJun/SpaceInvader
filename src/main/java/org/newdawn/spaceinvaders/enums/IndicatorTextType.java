@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 public enum IndicatorTextType {
-    Warning(Color.red, Font.BOLD),
-    Default(Color.white, Font.PLAIN);
+    WARNING(Color.red, Font.BOLD),
+    DEFAULT(Color.white, Font.PLAIN);
 
     private final Color color;
     private final int fontStyle;

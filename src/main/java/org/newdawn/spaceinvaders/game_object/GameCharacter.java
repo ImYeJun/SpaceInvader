@@ -12,8 +12,8 @@ public abstract class GameCharacter extends Mover2D implements ICollider2DOwner{
     protected long maxHealth;
     protected long health;
     protected int healthBarWidth = 20;
-    private final static int healthBarOffsetY = 20;
-    private final static int healthBarHeight = 5;
+    private final static int HEALTH_BAR_OFFSET_Y = 20;
+    private final static int HEALTH_BAR_HEIGHT = 5;
 
     protected SpriteRenderer spriteRenderer;
     public SpriteRenderer getSpriteRenderer() { return spriteRenderer; }
@@ -50,13 +50,13 @@ public abstract class GameCharacter extends Mover2D implements ICollider2DOwner{
         int healthBarPosX = FixedPointUtil.toInt(getPosX()) - healthBarWidth / 2;
 
         int healthBarPosY = FixedPointUtil.toInt(getPosY())
-                + healthBarOffsetY;
+                + HEALTH_BAR_OFFSET_Y;
 
         g.setColor(Color.gray);
-        g.fillRect(healthBarPosX, healthBarPosY, healthBarWidth, healthBarHeight);
+        g.fillRect(healthBarPosX, healthBarPosY, healthBarWidth, HEALTH_BAR_HEIGHT);
 
         g.setColor(Color.red);
         int fillHpBarWidth = (int)(healthBarWidth * ((double)health / maxHealth));
-        g.fillRect(healthBarPosX, healthBarPosY, fillHpBarWidth, healthBarHeight);
+        g.fillRect(healthBarPosX, healthBarPosY, fillHpBarWidth, HEALTH_BAR_HEIGHT);
     }
 }

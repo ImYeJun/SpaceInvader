@@ -25,7 +25,7 @@ import javax.imageio.ImageIO;
  */
 public class SpriteStore {
 	/** The single instance of this class */
-	private static SpriteStore single = new SpriteStore();
+	private final static SpriteStore INSTANCE = new SpriteStore();
 	
 	/**
 	 * Get the single instance of this class 
@@ -33,7 +33,7 @@ public class SpriteStore {
 	 * @return The single instance of this class
 	 */
 	public static SpriteStore get() {
-		return single;
+		return INSTANCE;
 	}
 	
 	/** The cached sprite map, from reference to sprite instance */

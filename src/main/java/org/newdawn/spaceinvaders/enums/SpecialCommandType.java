@@ -2,7 +2,7 @@ package org.newdawn.spaceinvaders.enums;
 
 public enum SpecialCommandType {
     // Enum constants with their associated string values
-    GameEnd("game-end");
+    GAME_END("game-end");
 
     // Field to store the string value
     private final String value;

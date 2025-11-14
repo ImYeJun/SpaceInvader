@@ -19,10 +19,10 @@ import org.newdawn.spaceinvaders.map_load.map_load_commands.SectionCommand;
 import org.newdawn.spaceinvaders.map_load.map_load_commands.SpecialCommand;
 
 public class MapDataParser {
-    private static MapDataParser instance = new MapDataParser();
+    private final static MapDataParser INSTANCE = new MapDataParser();
     public static MapDataParser getInstance()
     {
-        return instance;
+        return INSTANCE;
     }
 
     public Queue<SectionData> parseMapData(String plainData){
@@ -71,7 +71,7 @@ public class MapDataParser {
                 currentInstantiateCommands.add((InstantiateCommand)currentCommand);
             }
             else if (currentCommand instanceof SpecialCommand){
-                if (((SpecialCommand)currentCommand).getSpecialCommandType() == SpecialCommandType.GameEnd){
+                if (((SpecialCommand)currentCommand).getSpecialCommandType() == SpecialCommandType.GAME_END){
                     sections.add(new SectionData(currentSectionCommand, currentInstantiateCommands));
                     break;
                 }

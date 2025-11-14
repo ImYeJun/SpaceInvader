@@ -4,10 +4,10 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 public class PlayerSetting {
-    private static PlayerSetting instance = new PlayerSetting();
+    private final static PlayerSetting INSTANCE = new PlayerSetting();
     public static PlayerSetting getInstance()
     {
-        return instance;
+        return INSTANCE;
     }
 
     HashMap<String, Integer> keySetting;

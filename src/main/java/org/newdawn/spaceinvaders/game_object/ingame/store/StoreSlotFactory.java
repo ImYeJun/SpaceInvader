@@ -1,5 +1,6 @@
 package org.newdawn.spaceinvaders.game_object.ingame.store;
 
+import org.newdawn.spaceinvaders.PositionAngleSet;
 import org.newdawn.spaceinvaders.enums.PlayerPassiveSkillType;
 import org.newdawn.spaceinvaders.game_object.ingame.enemy.SpawnSignal;
 import org.newdawn.spaceinvaders.game_object.ingame.player.PlayerShip;
@@ -32,34 +33,35 @@ public class StoreSlotFactory {
         this.gameLoop = gameLoop;
     }
 
-    public void createPassiveSkillItemSlot(int skillId, long spawnPosX, long spawnPosY, PlayerShip playerShip){
+    public void createPassiveSkillItemSlot(int skillId, PositionAngleSet positionAngleSet, PlayerShip playerShip){
         PassiveSkill passiveSkill = null;
 
         switch (skillId) {
             case PS_FIRE_SPEED:
-                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.FireSpeed, gameLoop);
+                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.FIRE_SPEED, gameLoop);
                 break;
             case PS_DAMAGE_UP:
-                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.DamageUp, gameLoop);
+                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.DAMAGE_UP, gameLoop);
                 break;
             case PS_ADDITIONAL_ENGINE:
-                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.AdditionalEngine, gameLoop);
+                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.ADDITIONAL_ENGINE, gameLoop);
                 break;
             case PS_REPAIR_KIT:
-                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.RepairKit, gameLoop);
+                passiveSkill = new PassiveSkill(PlayerPassiveSkillType.REPAIR_KIT, gameLoop);
                 break;
-        }
-        if (passiveSkill == null){
-            System.err.println(skillId + "은 존재하지 않은 passiveSkill ID 입니다.");
-            return;
+            default:
+                System.err.println(skillId + "은 존재하지 않은 passiveSkill ID 입니다.");
+                return;
         }
 
-        StoreSlot storeSlot = new StoreSlot(gameLoop, passiveSkill, spawnPosX, spawnPosY);
-        SpawnSignal spawnSignal = new SpawnSignal(storeSlot, gameLoop, spawnPosX, spawnPosY, 0, SpawnSignal.StoreItemSignal);
+        StoreSlot storeSlot = new StoreSlot(gameLoop, passiveSkill, positionAngleSet.positionX, positionAngleSet.positionY);
+
+        SpawnSignal spawnSignal = new SpawnSignal(storeSlot, gameLoop, positionAngleSet, SpawnSignal.STORE_ITEM_SIGNAL);
+
         gameLoop.addGameObject(spawnSignal);
     }
     
-    public void createActiveSkillItemSlot(int skillId, long spawnPosX, long spawnPosY){
+    public void createActiveSkillItemSlot(int skillId, PositionAngleSet positionAngleSet){
         ActiveSkill activeSkill = null;
         switch (skillId) {
             case AS_BARRIER:
@@ -74,14 +76,15 @@ public class StoreSlotFactory {
             case AS_REFLECT:
                 activeSkill = new ReflectSkill(gameLoop);
                 break;
-        }
-        if (activeSkill == null){
-            System.err.println(skillId + "은 존재하지 않은 activeSkill ID 입니다.");
-            return;
+            default:
+                System.err.println(skillId + "은 존재하지 않은 activeSkill ID 입니다.");
+                return;
         }
 
-        StoreSlot storeSlot = new StoreSlot(gameLoop, activeSkill, spawnPosX, spawnPosY);
-        SpawnSignal spawnSignal = new SpawnSignal(storeSlot, gameLoop, spawnPosX, spawnPosY, 0, SpawnSignal.StoreItemSignal);
+        StoreSlot storeSlot = new StoreSlot(gameLoop, activeSkill, positionAngleSet.positionX, positionAngleSet.positionY);
+
+        SpawnSignal spawnSignal = new SpawnSignal(storeSlot, gameLoop, positionAngleSet, SpawnSignal.STORE_ITEM_SIGNAL);
+
         gameLoop.addGameObject(spawnSignal);
     }
 

@@ -1,5 +1,6 @@
 package org.newdawn.spaceinvaders.game_object.ingame.enemy.boss.boss_pattern;
 
+import org.newdawn.spaceinvaders.PositionAngleSet;
 import org.newdawn.spaceinvaders.fixed_point.FixedPointUtil;
 import org.newdawn.spaceinvaders.game_object.ingame.enemy.EnemyFactory;
 import org.newdawn.spaceinvaders.game_object.ingame.enemy.boss.Boss;
@@ -34,10 +35,12 @@ public class TroopDeploymentPattern extends BossPattern {
         for (int i = 0;i < spawnCount; i++){
             long spawnPosX = startSpawnPosX + FixedPointUtil.mul(spawnPosXInterval, i << 16);
             if (i % 2 == 0){ 
-                enemyFactory.spawnEnemy(enemyHiveMind, EnemyFactory.RAIDER, spawnPosX, raiderSpawnPosY);
+                PositionAngleSet positionAngleSet = new PositionAngleSet(spawnPosX, raiderSpawnPosY);
+                enemyFactory.spawnEnemy(enemyHiveMind, EnemyFactory.RAIDER, positionAngleSet);
             }
             else{
-                enemyFactory.spawnEnemy(enemyHiveMind, EnemyFactory.GUARDIAN, spawnPosX, guardianSpawnPosY);
+                PositionAngleSet positionAngleSet = new PositionAngleSet(spawnPosX, guardianSpawnPosY);
+                enemyFactory.spawnEnemy(enemyHiveMind, EnemyFactory.GUARDIAN, positionAngleSet);
             }
         }
 

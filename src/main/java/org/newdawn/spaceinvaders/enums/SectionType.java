@@ -2,8 +2,8 @@ package org.newdawn.spaceinvaders.enums;
 
 public enum SectionType {
     // Enum constants with their associated string values
-    NewWave("new-wave"),
-    Store("store");
+    NEW_WAVE("new-wave"),
+    STORE("store");
 
     // Field to store the string value
     private final String value;

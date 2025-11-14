@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SerializableRandom implements Serializable {
     // Serializable을 구현하여 Kryo가 쉽게 처리하도록 함
-    private static final long serialVersionUID = 1L;
+    private static final long SERIAL_VERSION_UID = 1L;
 
     private long seed;
 

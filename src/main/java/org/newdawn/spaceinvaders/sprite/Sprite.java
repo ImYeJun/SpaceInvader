@@ -18,9 +18,9 @@ import org.newdawn.spaceinvaders.fixed_point.FixedPointUtil;
 public class Sprite {
 	/** The image to be drawn for this sprite */
 	private Image image;
-    private long pivotX, pivotY;
-    private long scale;
-    private AffineTransform transform = new AffineTransform();
+        private long pivotX, pivotY;
+        private long scale;
+        private AffineTransform transform = new AffineTransform();
 	private int width;
 	private int height;
 	/**

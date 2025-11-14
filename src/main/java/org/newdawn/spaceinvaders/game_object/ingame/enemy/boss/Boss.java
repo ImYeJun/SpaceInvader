@@ -130,9 +130,8 @@ public class Boss extends Enemy{
             case BossPattern.LASER:
                 currentPattern = new LaserPattern(getLoop(), this);
                 break;
-        }
-        if (currentPattern == null){
-            throw new IllegalStateException("Unknown boss pattern type: " + currentPatternType);
+            default:
+                throw new IllegalStateException("Unknown boss pattern type: " + currentPatternType);
         }
         
         getLoop().addGameObject(currentPattern);

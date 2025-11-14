@@ -35,7 +35,7 @@ public abstract class Enemy extends GameCharacter implements IHiveMindListener, 
     protected long slowDownElapsed = 0;
 
     protected Boolean isHitAnimation = false;
-    protected final long hitAnimationDuration = FixedPointUtil.ZERO_1;
+    protected final static long HIT_ANIMATION_DURATION = FixedPointUtil.ZERO_1;
     protected long hitAnimationElapsed = 0;
 
     // Kryo 역직렬화를 위한 매개변수 없는 생성자
@@ -125,7 +125,7 @@ public abstract class Enemy extends GameCharacter implements IHiveMindListener, 
         }
 
         if (isHitAnimation){
-            if (hitAnimationElapsed >= hitAnimationDuration){
+            if (hitAnimationElapsed >= HIT_ANIMATION_DURATION){
                 isHitAnimation = false;
                 hitAnimationElapsed = 0;
             }

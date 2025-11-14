@@ -5,13 +5,13 @@ import org.newdawn.spaceinvaders.loop.GameLoop;
 import org.newdawn.spaceinvaders.loop.Loop;
 
 public class CoinItem extends LootItem {
-    private static final String spriteRef = "sprites/coin.png";
+    private static final String SPRITE_REF = "sprites/coin.png";
     // Kryo 역직렬화를 위한 매개변수 없는 생성자
     public CoinItem(){
         super();
     }
     public CoinItem(Loop loop) {
-        super(loop, spriteRef);
+        super(loop, SPRITE_REF);
     }
 
     protected void onCollideWithPlayerShip(PlayerShip ship){

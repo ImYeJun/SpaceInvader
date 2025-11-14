@@ -5,6 +5,7 @@
 
 package org.newdawn.spaceinvaders.game_object.ingame.enemy.boss.boss_pattern;
 
+import org.newdawn.spaceinvaders.PositionAngleSet;
 import org.newdawn.spaceinvaders.fixed_point.FixedPointUtil;
 import org.newdawn.spaceinvaders.game_object.ingame.enemy.SpawnSignal;
 import org.newdawn.spaceinvaders.game_object.ingame.enemy.boss.Boss;
@@ -17,9 +18,9 @@ import org.newdawn.spaceinvaders.loop.Loop;
 public class LaserPattern extends BossPattern {
     private boolean isExecuted = false;
     
-    private static final long warningTime = FixedPointUtil.ZERO_5 + (1 << 16);
+    private static final long WARNING_TIME = FixedPointUtil.ZERO_5 + (1 << 16);
     private long warnedElapsed;
-    private static final long warnerSpawnIntervel = 100 << 16;
+    private static final long WARNER_SPAWN_INTERVAL = 100 << 16;
 
     private long spawnPosX;
     private long spawnPosY;
@@ -40,10 +41,10 @@ public class LaserPattern extends BossPattern {
         super.process(deltaTime);
 
         if (!isExecuted) return;
-        if (warnedElapsed < warningTime){
+        if (warnedElapsed < WARNING_TIME){
             warnedElapsed += deltaTime;
 
-            if (warnedElapsed >= warningTime) { warnedElapsed = warningTime; }
+            if (warnedElapsed >= WARNING_TIME) { warnedElapsed = WARNING_TIME; }
         }
         else{
             shootLaser();
@@ -66,15 +67,16 @@ public class LaserPattern extends BossPattern {
         spawnAngle = FixedPointUtil.atan2(target.getPosY() - boss.getPosY(), target.getPosX() - boss.getPosX());
         spawnOffset = 60;
         
-        long currentWarnerSpawnPosX = spawnPosX + FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), warnerSpawnIntervel);
-        long currentWarnerSpawnPosY = spawnPosY + FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), warnerSpawnIntervel);
+        long currentWarnerSpawnPosX = spawnPosX + FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), WARNER_SPAWN_INTERVAL);
+        long currentWarnerSpawnPosY = spawnPosY + FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), WARNER_SPAWN_INTERVAL);
 
         while (currentWarnerSpawnPosX > 0 && currentWarnerSpawnPosX < (800 << 16)
             && currentWarnerSpawnPosY > 0 && currentWarnerSpawnPosY < (600 << 16)) {
-            SpawnSignal warner = new SpawnSignal((GameLoop)getLoop(), currentWarnerSpawnPosX, currentWarnerSpawnPosY, spawnAngle + (270<< 16), warningTime, SpawnSignal.EnemySignal);
+            PositionAngleSet positionAngleSet = new PositionAngleSet(currentWarnerSpawnPosX, currentWarnerSpawnPosY, spawnAngle + (270<< 16));
+            SpawnSignal warner = new SpawnSignal((GameLoop)getLoop(), positionAngleSet, WARNING_TIME, SpawnSignal.ENEMY_SIGNAL);
 
-            currentWarnerSpawnPosX += FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), warnerSpawnIntervel);
-            currentWarnerSpawnPosY += FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), warnerSpawnIntervel);
+            currentWarnerSpawnPosX += FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), WARNER_SPAWN_INTERVAL);
+            currentWarnerSpawnPosY += FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), WARNER_SPAWN_INTERVAL);
             getLoop().addGameObject(warner);
         }
     }

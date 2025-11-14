@@ -22,7 +22,7 @@ public class PassiveSkill extends PlayerSkill{
     @Override
     public boolean onAcquire(GameLoop gameLoop, PlayerShip playerShip) {
         if (playerShip.isPasiveSkillMaxLevel(type)) {
-            gameLoop.showIndicatorText("'" + type.name() + "'" + " 패시브 스킬은 현재 최대 레벨 입니다.", IndicatorTextType.Warning);
+            gameLoop.showIndicatorText("'" + type.name() + "'" + " 패시브 스킬은 현재 최대 레벨 입니다.", IndicatorTextType.WARNING);
             return false;
         }
         playerShip.upgradePassiveSkill(type);

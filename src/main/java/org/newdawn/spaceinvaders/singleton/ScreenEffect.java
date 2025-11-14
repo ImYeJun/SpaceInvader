@@ -7,10 +7,10 @@ public class ScreenEffect {
     private Loop loop;
     public void setLoop(Loop loop) { this.loop = loop; }
 
-    private static ScreenEffect instance = new ScreenEffect();
+    private final static ScreenEffect INSTANCE = new ScreenEffect();
     public static ScreenEffect getInstance()
     {
-        return instance;
+        return INSTANCE;
     }
 
     public void blankScreen(long duration) { new BlankScreenEffect(loop, duration); }

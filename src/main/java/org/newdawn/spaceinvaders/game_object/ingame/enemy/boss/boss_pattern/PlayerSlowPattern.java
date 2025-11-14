@@ -6,8 +6,8 @@ import org.newdawn.spaceinvaders.loop.GameLoop;
 import org.newdawn.spaceinvaders.loop.Loop;
 
 public class PlayerSlowPattern extends BossPattern {
-    private static final long playerSlowDownRatio = FixedPointUtil.ZERO_8;
-    private static final long playerSlowDownTime = 5 << 16;
+    private static final long PLAYER_SLOW_DOWN_RATIO = FixedPointUtil.ZERO_8;
+    private static final long PLAYER_SLOW_DOWN_TIME = 5 << 16;
 
     // Kryo 역직렬화를 위한 매개변수 없는 생성자
     public PlayerSlowPattern() {
@@ -23,7 +23,7 @@ public class PlayerSlowPattern extends BossPattern {
         System.out.println("PlayerSlowPattern executed");
 
         GameLoop gameLoop = (GameLoop)getLoop();
-        gameLoop.notifyPlayerShipsSlowDown(playerSlowDownRatio, playerSlowDownTime);
+        gameLoop.notifyPlayerShipsSlowDown(PLAYER_SLOW_DOWN_RATIO, PLAYER_SLOW_DOWN_TIME);
         
         notifyPatternEnd();
     }

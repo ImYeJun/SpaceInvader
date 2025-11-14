@@ -1,10 +1,12 @@
 package org.newdawn.spaceinvaders.enums;
 
+import org.newdawn.spaceinvaders.sprite.SpriteRef;
+
 public enum PlayerPassiveSkillType {
-    FireSpeed("FireSpeed", "sprites/testPassiveSkill.png", 3),
-    DamageUp("DamageUp", "sprites/testPassiveSkill.png", 5),
-    AdditionalEngine("AdditionalEngine", "sprites/testPassiveSkill.png", 3),
-    RepairKit("RepairKit", "sprites/testPassiveSkill.png", 3);
+    FIRE_SPEED("FireSpeed", "sprites/testPassiveSkill.png", 3),
+    DAMAGE_UP("DamageUp", "sprites/testPassiveSkill.png", 5),
+    ADDITIONAL_ENGINE("AdditionalEngine", "sprites/testPassiveSkill.png", 3),
+    REPAIR_KIT("RepairKit", "sprites/testPassiveSkill.png", 3);
 
     private final String name;
     private final String spriteRef;

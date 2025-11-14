@@ -8,7 +8,7 @@ import event_bus.EventBus;
 import event_bus.IEventBusSubscriber;
 
 public class EnemyBullet extends Bullet implements IEventBusSubscriber{
-    private static final String spriteRef = "sprites/enemy/enemyBullet.png";
+    private static final String SPRITE_REF = "sprites/enemy/enemyBullet.png";
 
     // Kryo 역직렬화를 위한 매개변수 없는 생성자
     public EnemyBullet(){
@@ -16,7 +16,7 @@ public class EnemyBullet extends Bullet implements IEventBusSubscriber{
     }
 
     public EnemyBullet(GameLoop gameLoop, long spawnAngle, long spawnCentralX, long spawnCentralY, long spawnOffset, long spawnSpeed) {
-        super(gameLoop, spawnAngle, spawnCentralX, spawnCentralY, spawnOffset, spawnSpeed, spriteRef);
+        super(gameLoop, spawnAngle, spawnCentralX, spawnCentralY, spawnOffset, spawnSpeed, SPRITE_REF);
 
         gameLoop.getEventBus().register(EventBombUsed.class, this);
     }

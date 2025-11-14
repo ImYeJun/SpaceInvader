@@ -7,8 +7,8 @@ import org.newdawn.spaceinvaders.loop.GameLoop;
 
 
 public abstract class PlayerSkill implements IStoreItem {
-    protected String skillName;
-    protected String skillSpriteRef;
+    protected String skillNameField;
+    protected String skillSpriteRefField;
     protected GameLoop gameLoop;
 
     protected PlayerShip playerShip;
@@ -18,18 +18,18 @@ public abstract class PlayerSkill implements IStoreItem {
         super();
     }
     public PlayerSkill(String skillName, String skillSpriteRef, GameLoop gameLoop) {
-        this.skillName = skillName;
-        this.skillSpriteRef = skillSpriteRef;
+        this.skillNameField = skillName;
+        this.skillSpriteRefField = skillSpriteRef;
         this.gameLoop = gameLoop;
     }
     
     @Override
     public String getName() {
-        return skillName;
+        return skillNameField;
     }
 
     @Override
     public String getSpriteRef() {
-        return skillSpriteRef;
+        return skillSpriteRefField;
     }
 }

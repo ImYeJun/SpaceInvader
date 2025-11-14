@@ -104,7 +104,7 @@ public class GameLoopPlayerLoop extends Loop implements IGameLoopGameResultListe
 
 
         // 게임 종료 시
-        if(gameLoop.getGameResult() != GameLoopResultType.InGame){
+        if(gameLoop.getGameResult() != GameLoopResultType.IN_GAME){
             if(isKeyInputJustPressed(0, "escape")) {
                 getGame().changeLoop(new LobbyLoop(getGame()));
             }
@@ -184,16 +184,16 @@ public class GameLoopPlayerLoop extends Loop implements IGameLoopGameResultListe
 
         super.draw(g);
 
-        if (isPlaying() && gameLoop.getGameResult() != GameLoopResultType.InGame) {
+        if (isPlaying() && gameLoop.getGameResult() != GameLoopResultType.IN_GAME) {
             Font font = g.getFont();
             g.setFont(new Font(font.getFontName(), Font.BOLD, 20));
 
             String message = "";
-            if (gameLoop.getGameResult() == GameLoopResultType.Win) {
+            if (gameLoop.getGameResult() == GameLoopResultType.WIN) {
                 message = "Well done! You Win!";
                 g.setColor(Color.yellow);
             }
-            else if (gameLoop.getGameResult() == GameLoopResultType.Lose) {
+            else if (gameLoop.getGameResult() == GameLoopResultType.LOSE) {
                 message = "Oh no! They got you...";
                 g.setColor(Color.red);
             }
@@ -332,7 +332,7 @@ public class GameLoopPlayerLoop extends Loop implements IGameLoopGameResultListe
         }
     }
     void gameResult(){
-        if(gameLoop.getGameResult() == GameLoopResultType.InGame){
+        if(gameLoop.getGameResult() == GameLoopResultType.IN_GAME){
             System.err.println("아직 게임이 끝나지 않은 상태에서는 게임 결과를 서버로 전송할 수 없음");
             return;
         }
@@ -340,14 +340,14 @@ public class GameLoopPlayerLoop extends Loop implements IGameLoopGameResultListe
         // 서버에 게임 종료 알림
         try {
             getGame().getRudpPeer().broadcastAboutTag("server", new PacketDataC2SGameResult(
-                    gameLoop.getScore(), gameLoop.getGameResult() ==  GameLoopResultType.Win
+                    gameLoop.getScore(), gameLoop.getGameResult() ==  GameLoopResultType.WIN
             ));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         // 게임 클리어 시 파이어베이스에 저장
-        if(gameLoop.getMyPlayerID() == 0 && gameLoop.getGameResult() ==  GameLoopResultType.Win){
+        if(gameLoop.getMyPlayerID() == 0 && gameLoop.getGameResult() ==  GameLoopResultType.WIN){
             try {
                 getGame().firebaseRankings.saveGameResult(
                         getGame().authToken,

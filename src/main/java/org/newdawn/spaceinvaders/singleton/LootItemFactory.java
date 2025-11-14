@@ -10,10 +10,10 @@ import org.newdawn.spaceinvaders.game_object.ingame.loot_item.ScoringItem;
 import org.newdawn.spaceinvaders.loop.GameLoop;
 
 public class LootItemFactory {
-    private static LootItemFactory instance = new LootItemFactory();
+    private final static LootItemFactory INSTANCE = new LootItemFactory();
     public static LootItemFactory getInstance()
     {
-        return instance;
+        return INSTANCE;
     }
 
     //TODO pseudo random으로 선택하게 만들기

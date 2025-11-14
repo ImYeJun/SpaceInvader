@@ -10,10 +10,10 @@ import org.newdawn.spaceinvaders.game_object.visual.SpriteRenderer;
 import org.newdawn.spaceinvaders.loop.GameLoop;
 
 public class EnemyDetectionZone extends GameObject2D implements ICollider2DOwner{
-    private static final long detectRange = 18 << 16;
-    private static final int detectScore = 100;
+    private static final long DETECT_RANGE = 18 << 16;
+    private static final int DETECT_SCORE = 100;
 
-    private static final long dectectInterval = FixedPointUtil.ZERO_1;
+    private static final long DETECT_INTERVAL = FixedPointUtil.ZERO_1;
     private long detectElapsed = 0;
     private boolean hasDetected = false;
 
@@ -27,10 +27,10 @@ public class EnemyDetectionZone extends GameObject2D implements ICollider2DOwner
         Collider2D collider2d = new Collider2D(loop, this);
 
         SpriteRenderer spriteRenderer = ship.getSpriteRenderer();
-        collider2d.boundsPosX = -spriteRenderer.getSpritePivotX() - detectRange;
-        collider2d.boundsPosY = -spriteRenderer.getSpritePivotY() - detectRange;
-        collider2d.boundsWidth = (((long)spriteRenderer.getSpriteWidth()) << 16) + FixedPointUtil.mul(detectRange, 2 << 16);
-        collider2d.boundsHeight = (((long)spriteRenderer.getSpriteHeight()) << 16) + FixedPointUtil.mul(detectRange, 2 << 16);
+        collider2d.boundsPosX = -spriteRenderer.getSpritePivotX() - DETECT_RANGE;
+        collider2d.boundsPosY = -spriteRenderer.getSpritePivotY() - DETECT_RANGE;
+        collider2d.boundsWidth = (((long)spriteRenderer.getSpriteWidth()) << 16) + FixedPointUtil.mul(DETECT_RANGE, 2 << 16);
+        collider2d.boundsHeight = (((long)spriteRenderer.getSpriteHeight()) << 16) + FixedPointUtil.mul(DETECT_RANGE, 2 << 16);
         collider2d.setDrawBounds(true);
 
         addChild(collider2d);
@@ -41,7 +41,7 @@ public class EnemyDetectionZone extends GameObject2D implements ICollider2DOwner
         super.process(deltaTime);
 
         if (hasDetected){
-            if (detectElapsed >= dectectInterval){
+            if (detectElapsed >= DETECT_INTERVAL){
                 hasDetected = false;
                 detectElapsed = 0;
             }
@@ -56,7 +56,7 @@ public class EnemyDetectionZone extends GameObject2D implements ICollider2DOwner
         if (!hasDetected){
             if (collider instanceof Enemy || collider instanceof EnemyBullet){
                 GameLoop gameLoop = (GameLoop)getLoop();
-                gameLoop.increaseScore(detectScore);
+                gameLoop.increaseScore(DETECT_SCORE);
                 hasDetected = true;
             }
         }

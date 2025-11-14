@@ -8,7 +8,6 @@ import org.newdawn.spaceinvaders.game_object.visual.SpriteRenderer;
 import org.newdawn.spaceinvaders.loop.Loop;
 
 public abstract class Laser extends GameObject2D implements ICollider2DOwner{
-    private int damage;
     private long lifeDuration;
     private long spawnElapsed = 0;
     private SpriteRenderer spriteRenderer;
@@ -20,7 +19,6 @@ public abstract class Laser extends GameObject2D implements ICollider2DOwner{
     public Laser(Loop loop, long spawnPosX, long spawnPosY, long spawnOffset, long spawnAngle, String spriteRef, int damage, long lifeDuration) {
         super(loop);
 
-        this.damage = damage;
         this.lifeDuration = lifeDuration;
 
         spriteRenderer = new SpriteRenderer(loop);
@@ -35,8 +33,8 @@ public abstract class Laser extends GameObject2D implements ICollider2DOwner{
         setRotation(spawnAngle);
         
         spawnAngle -= 90 << 16;
-        spawnPosX += FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), FixedPointUtil.fromLong(512)); //! 아니 이거랑 뭐가 다름?? FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), FixedPointUtil.div(-spriteRenderer.getSpriteHeight(), 2 << 16))
-        spawnPosY += FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), FixedPointUtil.fromLong(512)); //! 아니 이거랑 뭐가 다름?? FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), FixedPointUtil.div(-spriteRenderer.getSpriteHeight(), 2 << 16))
+        spawnPosX += FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), FixedPointUtil.fromLong(512));
+        spawnPosY += FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), FixedPointUtil.fromLong(512));
         spawnPosX += FixedPointUtil.mul(FixedPointUtil.cos(spawnAngle), FixedPointUtil.fromLong(spawnOffset));
         spawnPosY += FixedPointUtil.mul(FixedPointUtil.sin(spawnAngle), FixedPointUtil.fromLong(spawnOffset));
         setPos(spawnPosX, spawnPosY);

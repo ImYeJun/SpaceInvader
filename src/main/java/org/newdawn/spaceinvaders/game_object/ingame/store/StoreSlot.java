@@ -93,7 +93,7 @@ public class StoreSlot extends GameObject2D implements ICollider2DOwner, IEventB
                 }
             }
             else{
-                gameLoop.showIndicatorText("코인 갯수가 부족 합니다!", IndicatorTextType.Warning);
+                gameLoop.showIndicatorText("코인 갯수가 부족 합니다!", IndicatorTextType.WARNING);
             }
         }
     }
